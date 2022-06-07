@@ -1,4 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import  './assets/styles/styles.scss';
 
-createApp(App).mount('#app')
+const app = createApp(App);
+
+/*
+components.forEach(component =>{
+    app.component(component.name, component)
+});
+
+*/
+
+app.mount('#app')

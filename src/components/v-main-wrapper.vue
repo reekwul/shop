@@ -1,6 +1,5 @@
 <template>
 <div class = "v-main-wrapper">
-  wrapper
   <v-catalog/>
   <v-card/>
 </div>
@@ -32,7 +31,7 @@ watch:{},
 <style >
 .v-main-wrapper{
   max-width: 900px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 </style>

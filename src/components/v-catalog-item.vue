@@ -1,9 +1,14 @@
 <template>
 <div class="v-catalog-item">
-  <img class="v-catalog-item__img" :src="require('../assets/img/'+product_data.image)" :alt="product_data.image">
+  <img class="v-catalog-item__img"
+       :src="imgLink"
+       :alt="product_data.name">
   <p class="v-catalog-item__name">{{product_data.name}}</p>
-  <P class="v-catalog-item__price">Price: {{product_data.price}}</P>
-  <button class="v-catalog-item__btn btn">buy</button>
+  <p class="v-catalog-item__price">Price: {{product_data.price}}</p>
+  <button
+      class="v-catalog-item__btn btn"
+      @click="$emit('getToCard',this.product_data.article)"
+  >buy</button>
 </div>
 </template>
 
@@ -17,8 +22,13 @@ export default {
         return{}
       }
     }
+  },
 
-  }
+  computed: {
+    imgLink:  function () {
+      return  require(`../assets/img/${this.product_data.image}`)
+    },
+    },
 }
 </script>
 
@@ -29,5 +39,16 @@ export default {
   box-shadow: 0 0 8px #e00000;
   padding: $padding*2;
   margin: $margin*2;
+  &__img{
+    width: 100px;
+    height: 100px;
+    flex:1;
+  }
+  &__name {
+
+  }
+  &__price {
+    text-align: start;
+  }
 }
 </style>

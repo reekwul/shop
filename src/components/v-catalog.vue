@@ -6,6 +6,7 @@
     v-for="product in products"
     :key="product.article"
     :product_data="product"
+    @getToCard=show
     />
   </div>
 </div>
@@ -68,6 +69,11 @@ export default {
           category: "Женские"
         }
       ]
+    }
+  },
+  methods:{
+    show(data){
+      console.log(data)
     }
   }
 }

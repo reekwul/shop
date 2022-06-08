@@ -1,6 +1,14 @@
 <template>
 <div class="v-catalog">
-<v-catalog-item/>
+  <h1>Каталог</h1>
+  <div class="v-catalog__list">
+    <v-catalog-item
+    v-for="product in products"
+    :key="product.article"
+    :product_data="product"
+    @getToCard=show
+    />
+  </div>
 </div>
 </template>
 
@@ -8,20 +16,76 @@
 import VCatalogItem from "@/components/v-catalog-item";
 export default {
   name: "v-catalog",
-  components: {VCatalogItem}
+  components: {VCatalogItem},
+  data(){
+    return{
+      products:[
+        {
+          image: "1.png",
+          name: "T-shirt 1",
+          price: 2100.234234234,
+          article: "T1",
+          available: true,
+          category: "Мужские"
+        },
+        {
+          image: "2.png",
+          name: "T-shirt 2",
+          price: 3150.12312412,
+          article: "T2",
+          available: true,
+          category: "Женские"
+        },
+        {
+          image: "3.png",
+          name: "T-shirt 3",
+          price: 4200.51524,
+          article: "T3",
+          available: false,
+          category: "Женские"
+        },
+        {
+          image: "4.png",
+          name: "T-shirt 4",
+          price: 5300.1245512,
+          article: "T4",
+          available: true,
+          category: "Мужские"
+        },
+        {
+          image: "5.png",
+          name: "T-shirt 5",
+          price: 6500.3522314,
+          article: "T5",
+          available: false,
+          category: "Женские"
+        },
+        {
+          image: "6.png",
+          name: "T-shirt 6",
+          price: 8700.4124123,
+          article: "T6",
+          available: true,
+          category: "Женские"
+        }
+      ]
+    }
+  },
+  methods:{
+    show(data){
+      console.log(data)
+    }
+  }
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .v-catalog{
-  &_list {
+  &__list{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-
   }
-
 }
-
 </style>

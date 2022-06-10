@@ -6,7 +6,7 @@
           v-for="product in prod"
           :key="product.article"
           :product_data="product"
-          @getToCard=show
+          @getToCard=setProd
       />
     </div>
   </div>
@@ -25,22 +25,25 @@ export default {
   },
 computed:{
 ...mapGetters({
-     prod:'PRODUCTS'
+     prod:'product/Prod'
     })
 },
 
   methods:{
     ...mapActions({
-          getProd: 'getProd'
+          getProd: 'product/getProd',
+          getCard: 'card/addInCard'
         })
     ,
-    show(data){
+    setProd(data){
       console.log(data)
+      this.getCard(data)
+      //this.$emit('setProd',product_data)
     }
   },
   mounted(){
     this.getProd()
-    .then((resp)=>console.log(resp))
+
   }
 }
 </script>

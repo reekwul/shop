@@ -7,7 +7,7 @@
   <p class="v-catalog-item__price">Price: {{product_data.price}}</p>
   <button
       class="v-catalog-item__btn btn"
-      @click="$emit('getToCard',this.product_data.article)"
+      @click="$emit('getToCard',this.product_data)"
   >buy</button>
 </div>
 </template>

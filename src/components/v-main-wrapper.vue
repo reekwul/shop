@@ -1,7 +1,10 @@
 <template>
 <div class = "v-main-wrapper">
   <v-catalog/>
-  <v-card/>
+  <v-card
+      v-if="card.length"
+      :cardData = card
+  />
 </div>
 
 </template>
@@ -9,17 +12,24 @@
 
 import VCatalog from "@/components/v-catalog";
 import VCard from "@/components/v-card";
+import {mapGetters} from "vuex";
+
 export default {
 name: "v-main-wrapper",
   components: {VCatalog,VCard},
   props:{},
 data(){
 return{
- title:'main wrapper'
 }
 },
-computed:{},
-methods:{},
+computed:{
+  ...mapGetters({
+    card:'card/getCard'
+  })
+},
+methods:{
+
+},
 watch:{},
   mounted() {
 

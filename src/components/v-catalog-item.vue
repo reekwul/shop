@@ -1,7 +1,7 @@
 <template>
 <div class="v-catalog-item">
   <img class="v-catalog-item__img"
-       :src="imgLink"
+       src="../assets/img/1.png"
        :alt="product_data.name">
   <p class="v-catalog-item__name">{{product_data.name}}</p>
   <p class="v-catalog-item__price">Price: {{product_data.price}}</p>

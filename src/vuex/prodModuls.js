@@ -19,7 +19,6 @@ export const prodModule = {
 
             try {
                 const products =  await axios.get('http://localhost:3000/products');
-                console.log(products)
                 commit('setProd', await products.data);
             }
 

@@ -1,13 +1,13 @@
 <template>
 <div class="v-catalog-item">
   <img class="v-catalog-item__img"
-       :src="imgLink"
+       :src="imgLinks"
        :alt="product_data.name">
   <p class="v-catalog-item__name">{{product_data.name}}</p>
   <p class="v-catalog-item__price">Price: {{product_data.price}}</p>
   <button
       class="v-catalog-item__btn btn"
-      @click="$emit('getToCard',this.product_data)"
+      @click="$emit('getToCard',this.ProductData)"
   >buy</button>
 </div>
 </template>
@@ -15,20 +15,30 @@
 <script>
 export default {
   name: "v-catalog-item",
-  props:{
-    product_data:{
+  props: {
+    product_data: {
       type: Object,
-      default(){
-        return{}
+      default() {
+        return {}
       }
     }
   },
-
+  data(){
+    return{
+      ProductData:{
+        ...this.product_data,
+        qauntity: 1,
+      }
+    }
+  },
+  mounted(){
+  },
+  methods: {},
   computed: {
-    imgLink:  function () {
-      return  require(`../assets/img/${this.product_data.image}`)
+    imgLinks: function () {
+      return require(`../assets/img/${this.product_data.image}`)
     },
-    },
+  }
 }
 </script>
 

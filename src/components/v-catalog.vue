@@ -32,11 +32,13 @@ computed:{
   methods:{
     ...mapActions({
           getProd: 'product/getProd',
+          getCard: 'card/addInCard',
+          checkCard:'card/CheckToCard'
         })
     ,
     setProd(data){
-      console.log(data)
-      this.getCard(data)
+      this.getCard(data);
+      this.checkCard(data);
       //this.$emit('setProd',product_data)
     }
   },

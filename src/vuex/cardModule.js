@@ -21,7 +21,7 @@ export const cardModule = {
            state.card.filter(
               function (card) {
                   if(card.article == article){
-                      return card.qauntity +=1
+                      return  card.qauntity +=1
                   }
               })
         },
@@ -29,7 +29,7 @@ export const cardModule = {
             state.card.filter(
                 function (card) {
                     if(card.article == article){
-                        return card.qauntity +=1
+                        return  card.qauntity -=1
                     }
                 })
         }

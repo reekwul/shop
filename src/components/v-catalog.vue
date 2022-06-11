@@ -32,7 +32,6 @@ computed:{
   methods:{
     ...mapActions({
           getProd: 'product/getProd',
-          getCard: 'card/addInCard'
         })
     ,
     setProd(data){

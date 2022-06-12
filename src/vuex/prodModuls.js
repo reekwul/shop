@@ -1,31 +1,30 @@
 import axios from "axios";
+
 export const prodModule = {
-    state:()=>({
-        products:[],
+    state: () => ({
+        products: [],
     }),
     getters: {
-        Prod(state){
+        Prod(state) {
             return state.products;
         },
 
     },
-    mutations:{
-        setProd(state,products){
+    mutations: {
+        setProd(state, products) {
             state.products = products;
         },
     },
     actions: {
-        async getProd({commit}){
+        async getProd({commit}) {
 
             try {
-                const products =  await axios.get('http://localhost:3000/products');
+                const products = await axios.get('http://localhost:3000/products');
                 commit('setProd', await products.data);
-            }
-
-            catch (e){
+            } catch (e) {
                 console.log(e);
             }
         },
     },
-    namespaced:true
+    namespaced: true
 }

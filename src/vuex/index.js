@@ -4,7 +4,7 @@ import {prodModule} from "@/vuex/prodModuls";
 import {cardModule} from "@/vuex/cardModule";
 
 export default createStore({
-    modules:{
+    modules: {
         product: prodModule,
         card: cardModule
     }

@@ -1,65 +1,65 @@
 export const cardModule = {
-    namespaced:true,
-    state:()=>({
-        card:[]
+    namespaced: true,
+    state: () => ({
+        card: []
     }),
-    getters:{
-        getCard(state){
+    getters: {
+        getCard(state) {
             return state.card
         }
     },
-    mutations:{
-        setCard(state,product){
+    mutations: {
+        setCard(state, product) {
             state.card.push(product)
         },
-        deleteCard(state,date){
-            console.log(state.card.indexOf(date));
-            state.card.splice(state.card.indexOf(date),1)
+        deleteCard(state, date) {
+            state.card[state.card.indexOf(date)].qauntity = 1
+            state.card.splice(state.card.indexOf(date), 1)
         },
-        popLast(state,article){
+        popLast(state, article) {
             state.card.pop();
-           state.card.filter(
-              function (card) {
-                  if(card.article == article){
-                      return  card.qauntity +=1
-                  }
-              })
-        },
-        MinesCard(state,article){
             state.card.filter(
                 function (card) {
-                    if(card.article == article){
-                        return  card.qauntity -=1
+                    if (card.article == article) {
+                        return card.qauntity += 1
+                    }
+                })
+        },
+        MinesCard(state, article) {
+            state.card.filter(
+                function (card) {
+                    if (card.article == article) {
+                        return card.qauntity -= 1
                     }
                 })
         }
     },
-    actions:{
-        addInCard({commit},product){
-            commit('setCard',product)
+    actions: {
+        addInCard({commit}, product) {
+            commit('setCard', product)
         },
-        CheckToCard({state,commit},data){
-            if(state.card
+        CheckToCard({state, commit}, data) {
+            if (state.card
                 .filter(
-                        (card)=>card.article == data.article)
-                .length >1) {
+                    (card) => card.article == data.article)
+                .length > 1) {
 
-                commit('popLast',data.article)
+                commit('popLast', data.article)
             }
         },
-        Mines({commit,state},data){
+        Mines({commit, state}, data) {
 
-            if( state.card
+            if (state.card
                 .filter(
-                    (card)=>card.article == data.article)[0]
-                .qauntity > 1 ){
-                commit('MinesCard',data.article)
-            }else{
-                commit('deleteCard',data)
+                    (card) => card.article == data.article)[0]
+                .qauntity > 1) {
+                commit('MinesCard', data.article)
+            } else {
+                commit('deleteCard', data)
             }
         },
-        deleteCard({commit},data){
-            commit('deleteCard',data)
+        deleteCard({commit}, data) {
+            commit('deleteCard', data)
         }
     },
 

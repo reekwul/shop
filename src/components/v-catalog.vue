@@ -19,7 +19,7 @@
                 v-for="product in prod"
                 :key="product.article"
                 :product_data="product"
-                @getToCard=setProd
+                @getToCard=setCard
             />
         </div>
     </div>
@@ -46,6 +46,7 @@ export default {
     methods: {
         ...mapActions({
             getProd: 'product/getProd',
+            setCard: 'card/addInCard'
         }),
         CardTovar(){
             return this.card.reduce((a,b)=> a+b.qauntity,0)

@@ -1,42 +1,61 @@
 <template>
     <router-link to="/">
-        <img
-            class="back"
-            src="https://sozvezdie-boutique.ru/800/600/https/sportsmensoutpost.com/wp-content/uploads/2018/06/arrow.png"
-            alt="<-- В каталог"
-        >
+        <div class="back">
+            <img
+                class="back__img"
+                src="https://svgsilh.com/png-1024/2423349-ffeb3b.png"
+                alt="<-- В каталог"
+            >
+            <h4
+                v-if="!cards.length"
+                class="back__p" >За покупками</h4>
+        </div>
+
     </router-link>
-    <h2>Card</h2>
     <div
         class="no_card"
          v-if="!cards.length">
-        <p class="no_card__p">Корзина пуста...</p>
+        <h2 class="no_card__p">В корзине пока ничего нет</h2>
         <img
             class="no_card__img"
             src="https://all-brick.ru/img/shopping-cart-empty.png"
             alt="Корзина пуста">
-        <p class="no_card__p">Вернитесь в каталог чтоб продолжить покупки.</p>
+        <p class="no_card__p">Вы можете начать покупки с главной страницы или
+            воспользоватся поиском, если ищете что-то конкретное.</p>
     </div>
 
-
+    <h2
+        v-if="cards.length"
+    >Корзина</h2>
     <div class="v-card">
         <div v-for="card in cards"
              :key="card.article"
         >
             <v-card-item
                 :card_item_data=card
-                @plus="Check(card)"
-                @mines="MinesCard(card)"
-                @delCard="DeleteCard(card)"
+
             />
         </div>
     </div>
+    <span
+        class="sumBar"
+        v-if="sumPrice">
+        <div>
+            <p>Количество товаров: {{SumQauntity}}</p>
+            <p>{{sumPrice}} $</p>
+        </div>
+        <button class="sumBar__btn">
+            К оформлению
+        </button>
+    </span>
+
+
 </template>
 
 <script>
 
 import VCardItem from "@/components/v-card-item";
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
     name: "v-card",
@@ -51,37 +70,67 @@ export default {
             }
         }
     },
-    methods: {
-        ...mapActions({
-            AddInCard: 'card/addInCard',
-            CheckToCard: 'card/CheckToCard',
-            MinesCard: 'card/Mines',
-            DeleteCard: 'card/deleteCard'
-        }),
-        deltoCard(index) {
-            console.log(index)
-        },
-        Check(data) {
-            this.AddInCard(data);
-            this.CheckToCard(data);
-        }
-    },
     computed:{
         ...mapGetters({
             cards:'card/getCard'
-        })
+        }),
+        sumPrice(){
+            return this.cards.map((x)=>x.qauntity*x.price).reduce((a,b)=>a+b,0)
+        },
+        SumQauntity(){
+            return this.cards.map((x)=>x.qauntity).reduce((a,b)=>a+b,0)
+        }
     }
 }
 </script>
 
 <style lang="scss">
+h2{
+    text-align: start;
+}
 .back{
+    display: flex;
+    align-items: center;
     top:25px;
     left: 20px;
     position: absolute;
-    width: 45px;
-    transform: rotate(-90deg) scaleY(1);
+    &__img{
+        width: 45px;
+        transform: rotate(180deg);
+    }
+    &__p{
+        color: black;
+        margin: 10px;
+    }
 }
+
+.sumBar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-top:2px solid #FFCC00;
+    font-weight: bold;
+    &__btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        width: 150px;
+        height: 50px;
+        background: #FFDD00;
+        border-radius: 13px;
+        font-weight: bold;
+        border: none;
+    }
+    &__btn:hover{
+        cursor: pointer;
+    }
+}
+
 .no_card{
     &__img{
         width: 150px;

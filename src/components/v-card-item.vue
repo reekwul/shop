@@ -3,36 +3,43 @@
         <img class="v-card-item__img"
              :src="imgLinks"
              :alt="card_item_data.name">
-        <p class="v-card-item__name">{{ card_item_data.name }}</p>
-        <p class="v-card-item__price">Price: {{ card_item_data.price }}</p>
-        <div class="v-card-item__butt">
-            <div class="v-card-item__plusMines">
-                <button
-                    class="v-card-item__btn btn"
-                    @click="$emit('mines')"
-                >-
-                </button>
 
-                <p>{{ card_item_data.qauntity }}</p>
+        <p>{{ card_item_data.name }}</p>
+        <p>Price: {{ card_item_data.price }}</p>
 
-                <button class="v-card-item__btn btn"
-                        @click="$emit('plus')"
-                >+
-                </button>
-            </div>
-            <button
-                class="v-card-item__btn btn"
-                @click="$emit('delCard')"
-            >убрать из корзины
-            </button>
-        </div>
+        <span
+            class="v-card-item__btn"
+            @click="MinesCard(card_item_data)"
+        >-
+        </span>
 
+        <p>{{ card_item_data.qauntity }}</p>
+
+        <span
+            class="v-card-item__btn"
+            @click="Check(card_item_data)"
+        >+
+        </span>
+
+        <span
+            class="v-card-item__btn"
+            @click="DeleteCard(card_item_data)"
+        >
+            <img
+                class="v-card-item__imgs"
+                src="https://cdn-icons-png.flaticon.com/128/86/86241.png"
+                alt="Удалить"
+            >
+        </span>
     </div>
+<hr>
 
 
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
     name: "v-card-item",
     props: {
@@ -43,7 +50,18 @@ export default {
             }
         }
     },
-    methods: {},
+    methods: {
+        ...mapActions({
+            AddInCard: 'card/addInCard',
+            CheckToCard: 'card/CheckToCard',
+            MinesCard: 'card/Mines',
+            DeleteCard: 'card/deleteCard'
+        }),
+        Check(data) {
+            this.AddInCard(data);
+            this.CheckToCard(data);
+        }
+    },
     mounted() {
 
     },
@@ -57,35 +75,43 @@ export default {
 </script>
 
 <style scoped lang="scss">
-p {
-    margin: $margin;
+hr{
+    border: 1px solid #FFDD00;
 }
+
 
 .v-card-item {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 0 4px #e00000;
     margin: $margin*3;
+    font-size: larger;
 
     &__img {
-        max-width: 50px;
-        max-height: 50px;
+        width: 66px;
+        height: 99px;
+        border-radius: 9px;
+    }
+    &__imgs {
+        max-width: 25px;
+        max-height: 25px;
     }
 
-    &__plusMines {
+    &__btn {
         display: flex;
-        margin: $margin*5;
-    }
-
-    &__butt {
-        display: flex;
-        justify-content: space-between;
-
-        &__btn {
-            max-width: 20px;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        width: 50px;
+        height: 50px;
+        background: #FFDD00;
+        border-radius: 25px;
+        font-weight: bold;
         }
+    &__btn:hover{
+        cursor: pointer;
     }
-}
+    }
+
 </style>

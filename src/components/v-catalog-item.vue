@@ -1,16 +1,16 @@
 <template>
-<div class="v-catalog-item">
-    <img class="v-catalog-item__img"
-         :src="imgLinks"
-         :alt="product_data.name">
-    <p class="v-catalog-item__name">{{ product_data.name }}</p>
-    <p class="v-catalog-item__price">Price: {{ product_data.price }}</p>
-    <button
-        class="v-catalog-item__btn btn"
-        @click="$emit('getToCard',this.ProductData)"
-    >buy
-    </button>
-</div>
+    <div class="v-catalog-item">
+        <img class="v-catalog-item__img"
+             :src="imgLinks"
+             :alt="product_data.name">
+        <p>{{ product_data.price }} $</p>
+        <p>{{ product_data.name }}</p>
+        <v-my-btm
+            class="v-catalog-item__btn btn"
+            @click="$emit('getToCard',this.ProductData)"
+        >В корзину
+        </v-my-btm>
+    </div>
 </template>
 
 <script>
@@ -43,25 +43,23 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+p{
+    margin: 8px 20px;
+    text-align: start;
+}
 .v-catalog-item {
-
     flex-basis: 25%;
-    box-shadow: 0 0 8px #e00000;
+    box-shadow: 1px 3px 6px #000;
     padding: $padding*2;
     margin: $margin*2;
+    border-radius: $radius*3;
 
     &__img {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 200px;
         flex: 1;
-    }
-    &__name {
-
-    }
-
-    &__price {
-        text-align: start;
+        border-radius: $radius*2;
     }
 }
 </style>

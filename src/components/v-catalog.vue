@@ -46,14 +46,7 @@ export default {
     methods: {
         ...mapActions({
             getProd: 'product/getProd',
-            getCard: 'card/addInCard',
-            checkCard: 'card/CheckToCard'
         }),
-
-        setProd(data) {
-            this.getCard(data);
-            this.checkCard(data);
-        },
         CardTovar(){
             return this.card.reduce((a,b)=> a+b.qauntity,0)
             }
@@ -67,6 +60,9 @@ export default {
 </script>
 
 <style lang="scss">
+h1{
+    text-align: start;
+}
 .v-catalog {
     &__link_to_card {
         position: absolute;

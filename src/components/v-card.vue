@@ -1,18 +1,21 @@
 <template>
     <router-link to="/">
-        <div>
-            catalog
-        </div>
+        <img
+            class="back"
+            src="https://sozvezdie-boutique.ru/800/600/https/sportsmensoutpost.com/wp-content/uploads/2018/06/arrow.png"
+            alt="<-- В каталог"
+        >
     </router-link>
     <h2>Card</h2>
     <div
         class="no_card"
          v-if="!cards.length">
+        <p class="no_card__p">Корзина пуста...</p>
         <img
             class="no_card__img"
             src="https://all-brick.ru/img/shopping-cart-empty.png"
-            alt="корзина пуста"
-        >
+            alt="Корзина пуста">
+        <p class="no_card__p">Вернитесь в каталог чтоб продолжить покупки.</p>
     </div>
 
 
@@ -68,10 +71,21 @@ export default {
             cards:'card/getCard'
         })
     }
-
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.back{
+    top:25px;
+    left: 20px;
+    position: absolute;
+    width: 45px;
+    transform: rotate(-90deg) scaleY(1);
+}
+.no_card{
+    &__img{
+        width: 150px;
+        opacity: 0.3;
+    }
+}
 </style>

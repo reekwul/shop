@@ -53,7 +53,6 @@ export default {
         setProd(data) {
             this.getCard(data);
             this.checkCard(data);
-            //this.$emit('setProd',product_data)
         },
         CardTovar(){
             return this.card.reduce((a,b)=> a+b.qauntity,0)

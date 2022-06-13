@@ -56,7 +56,6 @@ export default {
         height: 100px;
         flex: 1;
     }
-
     &__name {
 
     }

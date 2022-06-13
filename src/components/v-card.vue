@@ -114,6 +114,7 @@ h2{
     left: 0;
     border-top:2px solid #FFCC00;
     font-weight: bold;
+    font-size: 18px;
     &__btn{
         display: flex;
         justify-content: center;
@@ -135,6 +136,9 @@ h2{
     &__img{
         width: 150px;
         opacity: 0.3;
+    }
+    &__p{
+        text-align: center;
     }
 }
 </style>

@@ -1,25 +1,27 @@
 <template>
     <router-link to="/card">
         <div
-        v-if="card.length"
-        class="v-catalog__link_to_card">
+            v-if="card.length"
+            class="v-catalog__link_to_card">
             <img src="https://botanicus-cosmetic.ru/design/cart.png" alt="card">
             <div class="v-catalog__link_to_card__p">
-                <p><strong>{{CardTovar()}}</strong></p>
+                <p><strong>{{ CardTovar() }}</strong></p>
             </div>
         </div>
     </router-link>
     <div class="v-catalog">
-
-
-
         <h1>Каталог</h1>
+        <v-my-select
+            :options='getOption'
+            v-model="modelValue"
+            class="my-select"
+        />
         <div class="v-catalog__list">
             <v-catalog-item
-                v-for="product in prod"
+                v-for="product in  filterOption"
                 :key="product.article"
                 :product_data="product"
-                @getToCard=setCard
+                @getToCard=addCard
             />
         </div>
     </div>
@@ -28,29 +30,50 @@
 <script>
 import VCatalogItem from "@/components/v-catalog-item";
 import {mapActions, mapGetters} from 'vuex'
+import VMySelect from "@/components/ui-component/v-my-select";
 
 export default {
     name: "v-catalog",
-    components: {VCatalogItem},
+    components: {VMySelect, VCatalogItem},
     data() {
-        return {}
+        return {
+            modelValue: 'Все',
+        }
     },
     computed: {
         ...mapGetters({
             prod: 'product/Prod',
             card: 'card/getCard'
         }),
-
+        getOption() {
+            let res = [];
+            this.prod.forEach(x => {
+                    if (res.indexOf(x.category) === -1) {
+                        res.push(x.category)
+                    }
+                }
+            )
+            return res
+        },
+        filterOption(){
+            let res =  this.prod.filter(x=>x.category ==  this.modelValue);
+            return res.length  ? res : this.prod
+        }
     },
 
     methods: {
         ...mapActions({
             getProd: 'product/getProd',
-            setCard: 'card/addInCard'
+            setCard: 'card/addInCard',
+            check: "card/CheckToCard"
         }),
-        CardTovar(){
-            return this.card.reduce((a,b)=> a+b.qauntity,0)
-            }
+        addCard(data) {
+            this.setCard(data);
+            this.check(data)
+        },
+        CardTovar() {
+            return this.card.reduce((a, b) => a + b.qauntity, 0)
+        }
 
     },
     mounted() {
@@ -61,15 +84,19 @@ export default {
 </script>
 
 <style lang="scss">
-h1{
+h1 {
     text-align: start;
 }
+
 .v-catalog {
+    display: flex;
+    flex-direction: column;
     &__link_to_card {
         position: absolute;
         top: 20px;
         left: 10px;
-        &__p{
+
+        &__p {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,8 +117,14 @@ h1{
     &__list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-items: center;
     }
-}
+}.my-select{
+    width: 200px;
+    margin-left: 20px;
+    align-self: start;
+    font-size: 18px;
+    padding: 10px;
+     border-radius: 5px;
+ }
 </style>

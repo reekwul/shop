@@ -8,7 +8,7 @@
                 src="https://botanicus-cosmetic.ru/design/cart.png"
                 alt="card">
             <div class="v-catalog__link_to_card__p">
-                <p><strong>{{ CardTovar() }}</strong></p>
+                <p><strong>{{CardTovar()}}</strong></p>
             </div>
         </div>
     </router-link>

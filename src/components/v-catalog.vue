@@ -3,7 +3,10 @@
         <div
             v-if="card.length"
             class="v-catalog__link_to_card">
-            <img src="https://botanicus-cosmetic.ru/design/cart.png" alt="card">
+            <img
+                class="v-catalog__link_to_card__img"
+                src="https://botanicus-cosmetic.ru/design/cart.png"
+                alt="card">
             <div class="v-catalog__link_to_card__p">
                 <p><strong>{{ CardTovar() }}</strong></p>
             </div>
@@ -56,7 +59,7 @@ export default {
             return res
         },
         filterOption(){
-            let res =  this.prod.filter(x=>x.category ==  this.modelValue);
+            let res =  this.prod.filter(x=>x.category ===  this.modelValue);
             return res.length  ? res : this.prod
         }
     },
@@ -94,7 +97,7 @@ h1 {
     &__link_to_card {
         position: absolute;
         top: 20px;
-        left: 10px;
+        right: 10px;
 
         &__p {
             display: flex;
@@ -105,26 +108,22 @@ h1 {
             background-color: #e0ee0e;
             border-radius: 10px;
             box-sizing: border-box;
-
+            position: relative;
+            bottom:29px;
+            left: 40px;
         }
+        &__img {
+              max-width: 75px;
+              max-height: 75px;
+          }
     }
 
-    &__link_to_card img {
-        max-width: 75px;
-        max-height: 75px;
-    }
+
 
     &__list {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
     }
-}.my-select{
-    width: 200px;
-    margin-left: 20px;
-    align-self: start;
-    font-size: 18px;
-    padding: 10px;
-     border-radius: 5px;
- }
+}
 </style>

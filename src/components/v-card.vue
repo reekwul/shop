@@ -40,8 +40,8 @@
     <span
         class="sumBar"
         v-if="sumPrice">
-        <div>
-            <p>Количество товаров: {{SumQauntity}}</p>
+        <div class="sumBar__sum">
+            <p>Количество товаров: {{sumQauntity}}</p>
             <p>{{sumPrice}} $</p>
         </div>
         <button class="sumBar__btn">
@@ -75,9 +75,16 @@ export default {
             cards:'card/getCard'
         }),
         sumPrice(){
-            return this.cards.map((x)=>x.qauntity*x.price).reduce((a,b)=>a+b,0)
+            let res = this.cards
+                .map((x)=>x.qauntity*x.price.replace(/\s/g,''))
+                .reduce((a,b)=>a+b,0)
+                .toFixed(2)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+            return res === '0.00' ? 0 : res
+
         },
-        SumQauntity(){
+        sumQauntity(){
             return this.cards.map((x)=>x.qauntity).reduce((a,b)=>a+b,0)
         }
     }

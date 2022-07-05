@@ -20,7 +20,7 @@ export default {
     modelValue: {
         type: String,
         default() {
-            return ;
+            return '';
         }
     },
     options: {
@@ -39,6 +39,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+select{
+    align-self: start;
+
+    width: 200px;
+
+    cursor: pointer;
+    border-radius:$radius*2;
+    border: 2px solid $color-bg;
+    padding: 10px 20px;
+    margin-left: 15px;
+    font-size: 16px;
+}
+select:focus {
+    outline:none
+}
 
 </style>

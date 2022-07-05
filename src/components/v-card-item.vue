@@ -17,7 +17,7 @@
 
         <span
             class="v-card-item__btn"
-            @click="Check(card_item_data)"
+            @click="check(card_item_data)"
         >+
         </span>
 
@@ -50,6 +50,7 @@ export default {
             }
         }
     },
+
     methods: {
         ...mapActions({
             AddInCard: 'card/addInCard',
@@ -57,7 +58,7 @@ export default {
             MinesCard: 'card/Mines',
             DeleteCard: 'card/deleteCard'
         }),
-        Check(data) {
+        check(data) {
             this.AddInCard(data);
             this.CheckToCard(data);
         }

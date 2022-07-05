@@ -12,6 +12,10 @@ export const prodModule = {
     },
     mutations: {
         setProd(state, products) {
+            for(let i = 0;i<products.length;i++){
+                 products[i].price = products[i].price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+
+            }
             state.products = products;
         },
     },

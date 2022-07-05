@@ -18,6 +18,7 @@ export default {
 
 <style scoped lang="scss">
     .btn{
+        cursor: pointer;
         box-sizing: border-box;
         background: $color-bg;
         border-radius:$radius*2;

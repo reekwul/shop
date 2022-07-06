@@ -1,24 +1,23 @@
 # shop
+Это учебный проект по созданию интернет магазина на Vue3 
+с использованием таких технологий как: 
+#### vue-router 
+#### vuex 
+#### REST API
+#### scss
+для картинки карточки товара используются заглушки.
+В проэкте реализован функционал:
+фильтрации товаров по категориям,
+функциональня корзина с возможностью добавлять и удалять товар внутри, а также подсчет общей стоимости товаров в корзине.
 
-## Project setup
-```
-npm install
-```
+Сборка проекта осуществляется при помощи @vue/cli. Функциональности проекта есть куда рости и на данный момент это не окончательная его версия.
+##Для зпуска проекта 
 
-### Compiles and hot-reloads for development
+необходимо ввести в консоль
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
+а также подключить json-server для отображения карточек товаров
 ```
-npm run build
+npx json-server db.json
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

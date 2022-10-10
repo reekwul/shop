@@ -1,6 +1,5 @@
 import axios from "axios";
 
-const url = 'https://script.google.com/macros/s/AKfycbzaZPr5GZXH2hCs7so56r5Zl5QYLZJo8DBE3rjFoXg/dev'
 export const prodModule = {
     state: () => ({
         products: [],
@@ -24,8 +23,8 @@ export const prodModule = {
         async getProd({commit}) {
 
             try {
-                const products = await axios.get(url
-                    // 'http://localhost:3000/products'
+                const products = await axios.get(
+                   'http://localhost:3000/products'
                 );
 
                 console.log(products)
